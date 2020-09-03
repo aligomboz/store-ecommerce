@@ -24,7 +24,10 @@ function(){
         Route::group(['prefix' => 'setting'], function () {
             Route::get('shipping-methode/{type}' , 'SettingsController@editShippingMethods')->name('editShippingMethods');
             Route::put('shipping-methode/{id}' , 'SettingsController@updateShippingMethods')->name('updateShippingMethods');
-    
+        });
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('edit' , 'ProfileController@editProfile')->name('editProfile');
+            Route::put('update' , 'ProfileController@updateProfile')->name('updateProfile');
         });
         
     });
