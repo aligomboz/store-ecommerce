@@ -7,8 +7,8 @@
             </li>
 
             <li class="nav-item"><a href=""><i class="la la-home"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">المتاجر </span>
-                    <span class="badge badge badge-info badge-pill float-right mr-2">5</span>
+                    <span class="menu-title" data-i18n="nav.dash.main">لغات الموقع </span>
+                    <span class="badge badge badge-info badge-pill float-right mr-2">2</span>
                 </a>
                 <ul class="menu-content">
                     <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
@@ -21,41 +21,38 @@
 
 
             <li class="nav-item"><a href=""><i class="la la-group"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">الفرق </span>
-                    <span class="badge badge badge-danger badge-pill float-right mr-2"></span>
+                    <span class="menu-title" data-i18n="nav.dash.main">الاقسام الرئيسية </span>
+            <span class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::Parent()->count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    <li class="active"><a class="menu-item" href="{{route('categories.index')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
-                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                            فريق </a>
+                <li><a class="menu-item" href="{{route('categories.create')}}" data-i18n="nav.dash.crypto"> اضافة قسم جديد </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">المدربين </span>
+            <li class="nav-item"><a href=""><i class="la la-group"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">الاقسام الفرعية </span>
                     <span class="badge badge badge-success badge-pill float-right mr-2"></span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                <li class="active"><a class="menu-item" href="{{route('sup-categories.index')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
-                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                            مدرب </a>
+                <li><a class="menu-item" href="{{route('sup-categories.create')}}" data-i18n="nav.dash.crypto">اضافة قسم فرعي جديد </a>
                     </li>
                 </ul>
             </li>
 
 
             <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">الطلاب </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">المتاجر </span>
                     <span class="badge badge badge-warning  badge-pill float-right mr-2"></span>
                 </a>
                 <ul class="menu-content">
                     <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
-                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                            طالب </a>
+                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة متجر جديد </a>
                     </li>
                 </ul>
             </li>

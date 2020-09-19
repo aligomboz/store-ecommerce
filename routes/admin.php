@@ -29,6 +29,9 @@ function(){
             Route::get('edit' , 'ProfileController@editProfile')->name('editProfile');
             Route::put('update' , 'ProfileController@updateProfile')->name('updateProfile');
         });
+        Route::resource('categories', 'MaiCategoriesController');
+        Route::resource('sup-categories', 'SupCategoriesController');
+
         
     });
 
