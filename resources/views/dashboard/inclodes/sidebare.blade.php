@@ -22,41 +22,59 @@
 
             <li class="nav-item"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الاقسام الرئيسية </span>
-            <span class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::Parent()->count()}}</span>
+                    <span
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::Parent()->count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="{{route('categories.index')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    <li class="active"><a class="menu-item" href="{{route('categories.index')}}"
+                            data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
-                <li><a class="menu-item" href="{{route('categories.create')}}" data-i18n="nav.dash.crypto"> اضافة قسم جديد </a>
+                    <li><a class="menu-item" href="{{route('categories.create')}}" data-i18n="nav.dash.crypto"> اضافة
+                            قسم جديد </a>
                     </li>
                 </ul>
             </li>
 
             <li class="nav-item"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الاقسام الفرعية </span>
-                    <span class="badge badge badge-success badge-pill float-right mr-2"></span>
+                    <span
+                        class="badge badge badge-success badge-pill float-right mr-2">{{\App\Models\Category::Child()->count()}}</span>
                 </a>
                 <ul class="menu-content">
-                <li class="active"><a class="menu-item" href="{{route('sup-categories.index')}}" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    <li class="active"><a class="menu-item" href="{{route('sup-categories.index')}}"
+                            data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
-                <li><a class="menu-item" href="{{route('sup-categories.create')}}" data-i18n="nav.dash.crypto">اضافة قسم فرعي جديد </a>
+                    <li><a class="menu-item" href="{{route('sup-categories.create')}}" data-i18n="nav.dash.crypto">اضافة
+                            قسم فرعي جديد </a>
                     </li>
                 </ul>
             </li>
 
 
-            <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">المتاجر </span>
-                    <span class="badge badge badge-warning  badge-pill float-right mr-2"></span>
+            <li class="nav-item"><a href=""><i class="la la-group"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main"> الماركات التجارية</span>
+                    <span class="badge badge badge-warning  badge-pill float-right mr-2">{{\App\Models\Brand::count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    <li class="active"><a class="menu-item" href="{{route('brands.store')}}"
+                            data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
-                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة متجر جديد </a>
+                <li><a class="menu-item" href="{{route('brands.create')}}" data-i18n="nav.dash.crypto">أضافة ماركة جديد </a>
                     </li>
                 </ul>
             </li>
-
+            <li class="nav-item"><a href=""><i class="la la-group"></i>
+                <span class="menu-title" data-i18n="nav.dash.main"> الماركات التجارية</span>
+                <span class="badge badge badge-warning  badge-pill float-right mr-2">{{\App\Models\Brand::count()}}</span>
+            </a>
+            <ul class="menu-content">
+                <li class="active"><a class="menu-item" href="{{route('brands.store')}}"
+                        data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                </li>
+            <li><a class="menu-item" href="{{route('brands.create')}}" data-i18n="nav.dash.crypto">أضافة ماركة جديد </a>
+                </li>
+            </ul>
+        </li>
 
             <li class="nav-item">
                 <a href=""><i class="la la-male"></i>
@@ -73,12 +91,14 @@
             <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title"
                         data-i18n="nav.templates.main">{{__('setting')}}</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="#" data-i18n="nav.templates.vert.main">{{__('Means of delivery')}}</a>
+                    <li><a class="menu-item" href="#"
+                            data-i18n="nav.templates.vert.main">{{__('Means of delivery')}}</a>
                         <ul class="menu-content">
-                        <li><a class="menu-item" href="{{route('editShippingMethods' , 'free')}}"
+                            <li><a class="menu-item" href="{{route('editShippingMethods' , 'free')}}"
                                     data-i18n="nav.templates.vert.classic_menu">{{__('توصيل مجاني')}}</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('editShippingMethods' , 'inner')}}">{{__('توصيل داخلي')}} </a>
+                            <li><a class="menu-item"
+                                    href="{{route('editShippingMethods' , 'inner')}}">{{__('توصيل داخلي')}} </a>
                             </li>
                             <li><a class="menu-item" href="{{route('editShippingMethods' , 'outer')}}"
                                     data-i18n="nav.templates.vert.compact_menu">{{__('توصيل خارجي')}}</a>

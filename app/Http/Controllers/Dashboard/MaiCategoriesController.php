@@ -17,7 +17,7 @@ class MaiCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::parent()->orderBy('id','DESC')->paginate(PAGINATION_COUNT);
+        $categories = Category::parent()->latest()->paginate(PAGINATION_COUNT);
         return view('dashboard.categories.index' , [
             'categories' => $categories,
         ]);

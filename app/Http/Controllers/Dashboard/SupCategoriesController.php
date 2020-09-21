@@ -13,7 +13,7 @@ class SupCategoriesController extends Controller
     public function index(Category $category)
     {
         
-        $cat =  $category->child()->orderBy('id','DESC')->paginate(PAGINATION_COUNT);
+        $cat =  $category->child()->latest()->paginate(PAGINATION_COUNT);
         return view('dashboard.aupCategories.index',[
             'categories' =>$cat,
         ]);
