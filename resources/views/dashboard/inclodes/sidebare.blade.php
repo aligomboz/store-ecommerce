@@ -21,7 +21,7 @@
 
 
             <li class="nav-item"><a href=""><i class="la la-group"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">الاقسام الرئيسية </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">الاقسام  </span>
                     <span
                         class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::Parent()->count()}}</span>
                 </a>
@@ -44,9 +44,10 @@
                     <li class="active"><a class="menu-item" href="{{route('sup-categories.index')}}"
                             data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
+                    {{--
                     <li><a class="menu-item" href="{{route('sup-categories.create')}}" data-i18n="nav.dash.crypto">اضافة
                             قسم فرعي جديد </a>
-                    </li>
+                    </li>--}}
                 </ul>
             </li>
 
@@ -64,14 +65,14 @@
                 </ul>
             </li>
             <li class="nav-item"><a href=""><i class="la la-group"></i>
-                <span class="menu-title" data-i18n="nav.dash.main"> الماركات التجارية</span>
-                <span class="badge badge badge-warning  badge-pill float-right mr-2">{{\App\Models\Brand::count()}}</span>
+                <span class="menu-title" data-i18n="nav.dash.main">العلامات Tags</span>
+                <span class="badge badge badge-warning  badge-pill float-right mr-2">{{\App\Models\Tag::count()}}</span>
             </a>
             <ul class="menu-content">
-                <li class="active"><a class="menu-item" href="{{route('brands.store')}}"
+                <li class="active"><a class="menu-item" href="{{route('tags.store')}}"
                         data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                 </li>
-            <li><a class="menu-item" href="{{route('brands.create')}}" data-i18n="nav.dash.crypto">أضافة ماركة جديد </a>
+            <li><a class="menu-item" href="{{route('tags.create')}}" data-i18n="nav.dash.crypto">أضافة علامة جديد </a>
                 </li>
             </ul>
         </li>

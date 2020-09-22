@@ -49,7 +49,7 @@
 
                                         <div class="form-group">
                                             <div class="text-center">
-                                                <img src="{{$brand ->photo}}" class="rounded-circle  height-250"
+                                                <img src="{{asset('assets/images/brands/'.$brand->photo)}}" class="rounded-circle  height-250"
                                                     alt="صورة القسم  ">
                                             </div>
                                         </div>

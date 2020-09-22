@@ -7,6 +7,7 @@ use App\Http\Requests\BrandsRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BrandsController extends Controller
 {
@@ -127,7 +128,7 @@ class BrandsController extends Controller
             else{
                 $request->request->add(['is_active' => 1]);
             }
-            
+            Storage::disk('brands')->delete($brand->photo);
             $brand->update($request->except('_token' , 'id' ,'photo'));
 
             //save translations
@@ -153,6 +154,8 @@ class BrandsController extends Controller
     {
         try{
             $brand->delete();
+            Storage::disk('brands')->delete($brand->photo);
+
             return redirect()->route('brands.index')->with(['success' => 'تم الحذف بنجاح']);
         }
         catch(\Exception $ex){

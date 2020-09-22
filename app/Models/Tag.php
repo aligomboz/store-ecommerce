@@ -35,4 +35,7 @@ class Tag extends Model
      *
      * @var array
      */
+    public function scopeParent($query){
+        return $query->whereNull('tag_id');
+    }
 }

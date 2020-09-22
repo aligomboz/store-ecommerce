@@ -17,7 +17,7 @@ class MaiCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::parent()->latest()->paginate(PAGINATION_COUNT);
+        $categories = Category::with('_parent')->latest()->paginate(PAGINATION_COUNT);
         return view('dashboard.categories.index' , [
             'categories' => $categories,
         ]);
@@ -28,9 +28,11 @@ class MaiCategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('dashboard.categories.create');
+        return view('dashboard.categories.create' , [
+            'categories' =>$category->get()
+        ]);
     }
 
     /**
@@ -42,7 +44,6 @@ class MaiCategoriesController extends Controller
     public function store(MainCategoryRequest $request , Category $category)
     {
        // return $request;
-
         try {
             DB::beginTransaction();
 
@@ -50,6 +51,15 @@ class MaiCategoriesController extends Controller
                 $request->request->add(['is_active' => 0]);
             else
                 $request->request->add(['is_active' => 1]);
+
+                //if user choose main category then we must remove paret id from the request
+
+            if($request ->type == 1) //main category
+            {
+                $request->request->add(['parent_id' => null]);
+            }
+
+            //if he choose child category we mus t add parent id
 
             $category = Category::create($request->except('_token'));
 
