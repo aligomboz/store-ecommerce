@@ -20,12 +20,19 @@ Route::group(
 function(){
     Route::group(['namespace' => 'Dashboard' , 'middleware'=>'auth:admin' , 'prefix' => 'admin'], function () {
         Route::get('/','DashboardController@index')->name('admin.dashboard');//thr first visit 
+        Route::get('logout' , 'LoginController@logout')->name('admin.logout');
         Route::group(['prefix' => 'setting'], function () {
             Route::get('shipping-methode/{type}' , 'SettingsController@editShippingMethods')->name('editShippingMethods');
             Route::put('shipping-methode/{id}' , 'SettingsController@updateShippingMethods')->name('updateShippingMethods');
-    
         });
-        
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('edit' , 'ProfileController@editProfile')->name('editProfile');
+            Route::put('update' , 'ProfileController@updateProfile')->name('updateProfile');
+        });
+        Route::resource('categories', 'MaiCategoriesController');
+        Route::resource('sup-categories', 'SupCategoriesController');
+        Route::resource('brands', 'BrandsController'); 
+        Route::resource('tags', 'TagsController'); 
     });
 
     Route::group(['namespace' => 'Dashboard','middleware'=>'guest:admin' ,'prefix' => 'admin' ], function () {

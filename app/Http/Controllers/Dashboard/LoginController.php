@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -24,5 +25,18 @@ class LoginController extends Controller
         }
         
         return redirect()->back()->with('erorr' , 'حناك خطأ في البيانات');
+    }
+
+    public function logout(){
+        /*
+         auth('admin')->logout();
+         return redirect()->route('admin.login');
+         */
+        $gaurd=  $this->logGaurd();
+        $gaurd->logout();
+        return redirect()->route('admin.login');
+    }
+    protected function logGaurd(){
+        return auth('admin');
     }
 }
