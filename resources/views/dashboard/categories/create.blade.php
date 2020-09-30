@@ -92,20 +92,23 @@
                                                     <div class="form-group">
                                                         <label for="projectinput1"> اختر القسم الرئيسي
                                                         </label>
-                                                        <select name="parent_id" class="select2 form-control">
+                                                        <select name="parent_id" style="width:25%" class=" form-control">
                                                             <optgroup label="من فضلك أختر القسم ">
-                                                                @if($categories && $categories -> count() > 0)
-                                                                @foreach($categories as $category)
-                                                                <option value="{{$category ->id }}">
-                                                                    {{$category ->name}}</option>
-                                                                @endforeach
+                                                                @if ($categories && $categories->count() > 0)
+                                                                            @php
+                                                                            if (App::getLocale() == "ar")
+                                                                                subCatRecursion($categories, 0,'←');
+                                                                            else
+                                                                                subCatRecursion($categories, 0,'→');
+                                                 
+                                                                            @endphp
                                                                 @endif
                                                             </optgroup>
                                                         </select>
                                                         @error('parent_id')
-                                                        <span class="text-danger"> {{$message}}</span>
+                                                        <span class="text-danger"> {{ $message }}</span>
                                                         @enderror
-
+                                                 
                                                     </div>
                                                 </div>
                                             </div>

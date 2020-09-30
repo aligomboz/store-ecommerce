@@ -32,7 +32,8 @@ function(){
         Route::resource('categories', 'MaiCategoriesController');
         Route::resource('sup-categories', 'SupCategoriesController');
         Route::resource('brands', 'BrandsController'); 
-        Route::resource('tags', 'TagsController'); 
+        Route::resource('tags', 'TagsController');
+        Route::resource('products', 'ProductsController');
     });
 
     Route::group(['namespace' => 'Dashboard','middleware'=>'guest:admin' ,'prefix' => 'admin' ], function () {

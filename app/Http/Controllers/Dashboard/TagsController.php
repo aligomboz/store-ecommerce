@@ -114,6 +114,7 @@ class TagsController extends Controller
     {
         try{
             DB::beginTransaction();
+            $tag->translations()->delete();
             $tag->delete();
             DB::commit();
             return redirect()->route('tags.index')->with(['success' => 'تم الحذف بنجاح']);
