@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Enumeration\CategoryType;
 use App\Http\Requests\MainCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class MaiCategoriesController extends Controller
     public function create(Category $category)
     {
         return view('dashboard.categories.create' , [
-            'categories' =>$category->get()
+            'categories' =>$category->parent()->get()
         ]);
     }
 
@@ -54,7 +55,7 @@ class MaiCategoriesController extends Controller
 
                 //if user choose main category then we must remove paret id from the request
 
-            if($request ->type == 1) //main category
+            if($request ->type == CategoryType::MainCategory) //main category
             {
                 $request->request->add(['parent_id' => null]);
             }
@@ -100,8 +101,11 @@ class MaiCategoriesController extends Controller
         if(!$category){
             return redirect()->route('categories.index')->with('error' , 'هذا القسم غير موجود');
         }
+        $categories = Category::parent()-> get();
+
         return view('dashboard.categories.edit' , [
             'category' =>$category,
+            'categories' =>$categories,
         ]);
     }
 

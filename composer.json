@@ -16,6 +16,7 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "mcamara/laravel-localization": "^1.5",
+        "spatie/enum": "^3.1",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

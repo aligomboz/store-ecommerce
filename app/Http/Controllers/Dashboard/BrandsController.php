@@ -153,6 +153,7 @@ class BrandsController extends Controller
     public function destroy(Brand $brand)
     {
         try{
+            $brand->translations()->delete();
             $brand->delete();
             Storage::disk('brands')->delete($brand->photo);
 

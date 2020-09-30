@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Enumeration\CategoryType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MainCategoryRequest extends FormRequest
@@ -23,9 +24,20 @@ class MainCategoryRequest extends FormRequest
      */
     public function rules()
     {
+        /*
+        $rules = [
+        'name' => 'required',
+        'slug' => 'required|unique:categories,slug,'.$this->id,
+        ];
+        foreach(CategoryType::getAll() as $key => $val)
+        {
+        $rules[$key] = 'required|in:'.$val;
+        }
+        return $rules;
+        */
         return [
             'name' => 'required',
-            'type' => 'required|in:1,2',
+            'type' => 'required|in:'.CategoryType::MainCategory.','.CategoryType::SupCategory,
             'slug' => 'required|unique:categories,slug,'.$this->id,
         ];
     }
