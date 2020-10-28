@@ -63,21 +63,22 @@
                                                 <td>{{$product ->price}}</td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-
-
+                                                        <a href="{{route('products.getImag' , $product->id)}}"
+                                                            class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">الصور</a>
+                                                        <a href="{{route('products.getPrice' , $product->id)}}"
+                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">السعر</a>
+                                                        <a href="{{route('products.getStok' , $product->id)}}"
+                                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">المستودع</a>
                                                     </div>
                                                 </td>
                                             </tr>
                                             @endforeach
                                             @endisset
-
-
                                         </tbody>
                                     </table>
-                                    {!! $products -> links() !!}
 
                                     <div class="justify-content-center d-flex">
-
+                                        {!! $products -> links() !!}
                                     </div>
                                 </div>
                             </div>
@@ -88,5 +89,4 @@
         </div>
     </div>
 </div>
-
-@stop
+@endsection

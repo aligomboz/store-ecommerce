@@ -23,8 +23,7 @@ class LoginController extends Controller
         )){
             return redirect()->route('admin.dashboard');
         }
-        
-        return redirect()->back()->with('erorr' , 'حناك خطأ في البيانات');
+        return redirect()->back()->with('erorrs' , 'حناك خطأ في البيانات');
     }
 
     public function logout(){
