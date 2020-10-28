@@ -844,6 +844,7 @@
                 <li><a class="menu-item" href="component-modals.html"
                         data-i18n="nav.components.component_modals">Modals</a>
                 </li>
+                
                 <li><a class="menu-item" href="component-pagination.html"
                         data-i18n="nav.components.component_pagination">Pagination</a>
                 </li>

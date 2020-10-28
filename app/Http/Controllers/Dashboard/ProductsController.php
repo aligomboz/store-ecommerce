@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GeneralRequest;
+use App\Http\Requests\ProductsPriceRequest;
+use App\Http\Requests\ProductStockRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -20,9 +22,9 @@ class ProductsController extends Controller
      */
     public function index(Product $product)
     {
-        $pro = $product->select('id','slug','price', 'created_at')->paginate(PAGINATION_COUNT);
-        return view('dashboard.products.general.index',[
-            'products' =>$pro,
+        $pro = $product->select('id', 'slug', 'price', 'created_at' , 'is_active')->paginate(PAGINATION_COUNT);
+        return view('dashboard.products.general.index', [
+            'products' => $pro,
         ]);
     }
 
@@ -31,15 +33,15 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Brand $brand , Category $category , Tag $tag)
+    public function create(Brand $brand, Category $category, Tag $tag)
     {
         $data['brands'] = $brand->active()->select('id')->get();
         $data['categories'] = $category->active()->select('id')->get();
         $data['tags'] = $tag->get();
-        return view('dashboard.products.general.create' ,[
-        'brands' => $brand->active()->select('id')->get(),
-        'categories' => $category->active()->select('id')->get(),
-        'tags' => $tag->get(),
+        return view('dashboard.products.general.create', [
+            'brands' => $brand->active()->select('id')->get(),
+            'categories' => $category->active()->select('id')->get(),
+            'tags' => $tag->get(),
         ]);
     }
 
@@ -51,7 +53,6 @@ class ProductsController extends Controller
      */
     public function store(GeneralRequest $request)
     {
-        
         DB::beginTransaction();
 
         //validation
@@ -79,9 +80,7 @@ class ProductsController extends Controller
         //save product tags
 
         DB::commit();
-        return redirect()->route('admin.products')->with(['success' => 'تم ألاضافة بنجاح']);
-
-
+        return redirect()->route('products.index')->with(['success' => 'تم ألاضافة بنجاح']);
     }
 
     /**
@@ -127,5 +126,53 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPrice($product_id )
+    {
+        //$product = Product::get();
+        return view('dashboard.products.prices.create')->with('id' , $product_id)/*->with('product' , $product)*/;
+    }
+
+    public function saveProductPrice(ProductsPriceRequest $request)
+    {
+        //return $request;
+        try {
+
+            Product::whereId($request->product_id)->update($request->only(['price', 'special_price', 'special_price_type', 'special_price_start', 'special_price_end']));
+            return redirect()->route('products.index')->with(['success' => 'تم التحديث بنجاح']);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return redirect()->route('products.index')->with('erorrs' , 'حدث خطا ما يرجى المحاولة لاحقا');
+        }
+    }
+
+    public function getStok($product_id){
+        return view('dashboard.products.stock.create')->with('id' , $product_id);
+    }
+    
+    public function saveProductStok(ProductStockRequest $request){
+          // return $request;
+        try{
+            Product::whereId($request->product_id) -> update($request -> except(['_token','product_id']));
+            return redirect()->route('products.index')->with(['success' => 'تم التحديث بنجاح']);
+        }catch (\Exception $ex) {
+            DB::rollBack();
+            return redirect()->route('products.index')->with('erorrs' , 'حدث خطا ما يرجى المحاولة لاحقا');
+        }
+    }
+    
+    public function getImag($product_id){
+        return view('dashboard.products.image.create')->with('id' , $product_id);
+    }
+    public function saveProductImag(Request $request){
+
+        $file = $request->file('dzfile');
+        $filename = uploadImage('products', $file);
+
+        return response()->json([
+            'name' => $filename,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
 }

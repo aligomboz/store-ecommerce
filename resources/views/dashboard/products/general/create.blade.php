@@ -82,7 +82,7 @@
                                                         <label for="projectinput1"> وصف المنتج
                                                         </label>
                                                         <textarea name="description" id="description"
-                                                            class="form-control"
+                                                            class="form-control ckeditor"
                                                             placeholder="  ">{{old('description')}}</textarea>
 
                                                         @error("description")
@@ -96,7 +96,7 @@
                                                         <label for="projectinput1"> الوصف المختصر
                                                         </label>
                                                         <textarea name="short_description" id="short-description"
-                                                            class="form-control"
+                                                            class="form-control ckeditor"
                                                             placeholder="">{{old('short_description')}}</textarea>
 
                                                         @error("short_description")
@@ -118,8 +118,8 @@
                                                             <optgroup label="من فضلك أختر القسم ">
                                                                 @if($categories && $categories -> count() > 0)
                                                                 @foreach($categories as $category)
-                                                                <option value="{{$category -> id }}">
-                                                                    {{$category -> name}}</option>
+                                                                <option value="{{$category ->id }}">
+                                                                    {{$category ->name}}</option>
                                                                 @endforeach
                                                                 @endif
                                                             </optgroup>
@@ -137,7 +137,7 @@
                                                             <optgroup label=" اختر ألعلامات الدلالية ">
                                                                 @if($tags && $tags -> count() > 0)
                                                                 @foreach($tags as $tag)
-                                                                <option value="{{$tag -> id }}">{{$tag -> name}}
+                                                                <option value="{{$tag ->id }}">{{$tag ->name}}
                                                                 </option>
                                                                 @endforeach
                                                                 @endif
@@ -156,7 +156,7 @@
                                                             <optgroup label="من فضلك أختر الماركة ">
                                                                 @if($brands && $brands -> count() > 0)
                                                                 @foreach($brands as $brand)
-                                                                <option value="{{$brand -> id }}">{{$brand -> name}}
+                                                                <option value="{{$brand ->id }}">{{$brand ->name}}
                                                                 </option>
                                                                 @endforeach
                                                                 @endif
